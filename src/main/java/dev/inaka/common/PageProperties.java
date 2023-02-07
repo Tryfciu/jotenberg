@@ -22,6 +22,8 @@ public final class PageProperties {
     private final String pdfFormat;
     private final String nativePdfFormat;
 
+    private final String waitForExpression;
+
     private PageProperties(Builder builder) {
         paperWidth = builder.paperWidth;
         paperHeight = builder.paperHeight;
@@ -36,7 +38,7 @@ public final class PageProperties {
         nativePageRanges = builder.nativePageRanges;
         pdfFormat = builder.pdfFormat;
         nativePdfFormat = builder.nativePdfFormat;
-
+        waitForExpression = builder.waitForExpression;
     }
 
     public static class Builder {
@@ -52,6 +54,7 @@ public final class PageProperties {
         private float scale = 1f;
         private String nativePageRanges = "";
         private String pdfFormat = "";
+        private String waitForExpression = "";
 
         private String nativePdfFormat = PdfFormat.A_1A.format();
 
@@ -137,6 +140,11 @@ public final class PageProperties {
             return this;
         }
 
+        public Builder addWaitForExpression(String expression) {
+            this.waitForExpression = expression;
+            return this;
+        }
+
         public PageProperties build() {
             return new PageProperties(this);
         }
@@ -192,6 +200,10 @@ public final class PageProperties {
 
     public String getNativePdfFormat() {
         return nativePdfFormat;
+    }
+
+    public String getWaitForExpression() {
+        return waitForExpression;
     }
 }
 
